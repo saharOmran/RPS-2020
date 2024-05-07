@@ -4,3 +4,59 @@
 * {
   box-sizing: border-box;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+	background-color:#3B2A9F;
+}
+
+#choices button {
+    margin: 10px;
+    padding: 10px;
+	width: 300px;
+    font-size: 18px;
+	background-color:#3B2A9F;
+	border: none;
+}
+
+#result {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+#result2 {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+#result3 {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+#restart{
+	width: 260px;
+	height: 90px;
+    margin: auto;
+	display: none;
+	padding: 1rem;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	margin-top: 70px;
+	background-color:#3B2A9F;
+	border-radius: 10px;
+	border: solid white 4px;
+	color: white;
+	font-size: 30px;
+	
+
+}
+
+.orange-button{
+	display: flex;
+	justify-content: space-between;
+	width: 700px;
+	margin-left: 390px;
+}
