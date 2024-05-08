@@ -1,4 +1,5 @@
 
+
 document.addEventListener('DOMContentLoaded', function() {
     const choices = document.querySelectorAll('.choice');
     const result = document.getElementById('result');
@@ -11,17 +12,22 @@ document.addEventListener('DOMContentLoaded', function() {
     let computerScore = 0;
     let rounds = 0;
 
-    restartButton.style.display = 'none';
-     
+    restartButton.style.display = 'none'; // Initially hidden
+
+    // Initially disable the game choices
+    choices.forEach(choice => {
+        choice.disabled = true; // Disable choices initially
+    });
+
     // Event listener for start button
     startButton.addEventListener('click', function() {
-        // Show the choices and hide the start button
-        
+        // Enable the game choices
+        choices.forEach(choice => {
+            choice.disabled = false; // Enable choices
+        });
         document.getElementById('choices').style.display = 'block';
         startButton.style.display = 'none';
     });
-
-    
 
     choices.forEach(choice => {
         choice.addEventListener('click', function() {
@@ -29,54 +35,60 @@ document.addEventListener('DOMContentLoaded', function() {
             const playerChoice = this.value;
             const computerChoice = getComputerChoice();
             const winner = determineWinner(playerChoice, computerChoice);
-           
 
-            if (winner === "You win!") {
-                playerScore++;
-            } else if (winner === "Computer wins!") {
-                computerScore++;
-            }
-
-            rounds++;
-
-           
-
-            if (rounds < 3) {
-                result.textContent = `Round ${rounds}: Computer chose ${computerChoice}. ${winner}`;
-                result2.textContent = `you  ${playerScore} : ${computerScore}  AI`
-            }else  {
-                if (playerScore > computerScore) {
-                    result3.style.color = "green";
-                    result3.textContent = `You win!` ;
-                    result2.textContent = `you  ${playerScore} : ${computerScore}  AI`;
-                    result.textContent = `Round ${rounds}: Computer chose ${computerChoice}. ${winner}`;
-                    return result3.textContent;
-
-                } else if (playerScore < computerScore) {
-                    result3.style.color = "red";
-                    result3.textContent = `You lost!`;
-                    result2.textContent = `you  ${playerScore} : ${computerScore}  AI`;
-                    result.textContent = `Round ${rounds}: Computer chose ${computerChoice}. ${winner}`;
-                    return result3.textContent;
-                } else {
-                    result3.style.color = "white";
-                    result3.textContent = `draw`;
-                    result2.textContent = `you  ${playerScore} : ${computerScore}  AI`;
-                    result.textContent = `Round ${rounds}: Computer chose ${computerChoice}. ${winner}`;
-                    return result3.textContent;
+            if (rounds < 3) { // Only update scores and display results if less than 3 rounds
+                if (winner === "You win!") {
+                    playerScore++;
+                } else if (winner === "Computer wins!") {
+                    computerScore++;
                 }
-                restartButton.style.display = 'block';
+
+                rounds++;
+
+                if (rounds < 3) {
+                    result.textContent = `Round ${rounds}: Computer chose ${computerChoice}. ${winner}`;
+                    result2.textContent = `you  ${playerScore} : ${computerScore}  AI`;
+                } else {
+                    // Display the restart button after the game ends
+                    restartButton.style.display = 'block';
+                    startButton.style.display = 'none';
+
+                    if (playerScore > computerScore) {
+                        result3.style.color = "green";
+                        result3.textContent = `You win`;
+                        result2.textContent = `you  ${playerScore} : ${computerScore}  AI`;
+                        result.textContent = `Round ${rounds}: Computer chose ${computerChoice}. ${winner}`;
+                    } else if (playerScore < computerScore) {
+                        result3.style.color = "red";
+                        result3.textContent = `You lost`;
+                        result2.textContent = `you  ${playerScore} : ${computerScore}  AI`;
+                        result.textContent = `Round ${rounds}: Computer chose ${computerChoice}. ${winner}`;
+                    } else {
+                        result3.style.color = "white";
+                        result3.textContent = `draw`;
+                        result2.textContent = `you  ${playerScore} : ${computerScore}  AI`;
+                        result.textContent = `Round ${rounds}: Computer chose ${computerChoice}. ${winner}`;
+                    }
+                    // Prevent further clicks on choices after the game ends
+                    choices.forEach(choice => {
+                        choice.removeEventListener('click', choiceClickHandler);
+                    });
+                }
             }
         });
     });
 
     restartButton.addEventListener('click', function() {
+        // Reset game state
         playerScore = 0;
         computerScore = 0;
         rounds = 0;
         result.textContent = '';
-        restartButton.style.display = 'none';
+        result2.textContent = '';
+        result3.textContent = '';
         scoreText.style.display = 'block';
+        restartButton.style.display = 'none';
+        startButton.style.display = 'block';
     });
 
     function getComputerChoice() {
@@ -99,3 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+
+
+
