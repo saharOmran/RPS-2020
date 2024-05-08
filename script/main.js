@@ -89,6 +89,9 @@ document.addEventListener('DOMContentLoaded', function() {
         scoreText.style.display = 'block';
         restartButton.style.display = 'none';
         startButton.style.display = 'block';
+        choices.forEach(choice => {
+            choice.disabled = true; // Disable choices initially
+        });
     });
 
     function getComputerChoice() {
