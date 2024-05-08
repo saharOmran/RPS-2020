@@ -55,17 +55,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     if (playerScore > computerScore) {
                         result3.style.color = "green";
-                        result3.textContent = `You win`;
+                        result3.textContent = `You win!`;
                         result2.textContent = `you  ${playerScore} : ${computerScore}  AI`;
                         result.textContent = `Round ${rounds}: Computer chose ${computerChoice}. ${winner}`;
                     } else if (playerScore < computerScore) {
                         result3.style.color = "red";
-                        result3.textContent = `You lost`;
+                        result3.textContent = `You lost!`;
                         result2.textContent = `you  ${playerScore} : ${computerScore}  AI`;
                         result.textContent = `Round ${rounds}: Computer chose ${computerChoice}. ${winner}`;
                     } else {
-                        result3.style.color = "white";
-                        result3.textContent = `draw`;
+                        result3.style.color = "yellow";
+                        result3.textContent = `draw!`;
                         result2.textContent = `you  ${playerScore} : ${computerScore}  AI`;
                         result.textContent = `Round ${rounds}: Computer chose ${computerChoice}. ${winner}`;
                     }
