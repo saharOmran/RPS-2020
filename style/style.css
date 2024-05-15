@@ -18,18 +18,7 @@ body {
 	align-items: center;
 }
 
-#choices img:active{
-	filter:grayscale(100%)
-}
-
-#images button{
-	margin: 10px;
-    padding: 10px;
-	width: 300px;
-    font-size: 18px;
-	background-color:#082c6c;
-	border: none;
-}
+ 
 
 .title{
 	position: absolute;
@@ -38,14 +27,7 @@ body {
 	z-index: 2;
 }
 
-#choices button {
-    margin: 10px;
-    padding: 10px;
-	width: 300px;
-    font-size: 18px;
-	background-color:#082c6c;
-	border: none;
-}
+ 
 
 #result {
     font-size: 20px;
